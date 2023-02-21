@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 
-module  "aws_instance" "CSRv" {
+module  "CSRv" {
 
   source = "./csrv"
   create = true  

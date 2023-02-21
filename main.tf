@@ -1,3 +1,8 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
+
 module  "aws_instance" "CSRv" {
 
   source = "./csrv"
@@ -13,6 +18,6 @@ module  "aws_instance" "CSRv" {
   Root-volume-size = 8
   Root-volume-encrypted = true
   Private-ip = null
-  
+
 }
 

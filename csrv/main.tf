@@ -40,17 +40,17 @@ data "aws_ami" "CSRv" {
 
 resource "aws_instance" "CSRv" {
   count = var.create ? 1 : 0
-  ami           = data.aws_ami.CSRv.image_id
+  ami           = data.aws_ami.CSRv[count.index].image_id
   instance_type = var.Instance-type
   
-  subnet_id = data.aws_subnet.selected.id
-  vpc_security_group_ids = [data.aws_security_group.selected.id]
+  subnet_id = data.aws_subnet.selected[count.index].id
+  vpc_security_group_ids = [data.aws_security_group.selected[count.index].id]
   key_name = var.SSH-key-name
   
  
   root_block_device {
     encrypted = true
-    kms_key_id = data.aws_kms_key.this.id
+    kms_key_id = data.aws_kms_key.this[count.index].id
     volume_size = var.Root-volume-size
   }
  
@@ -68,7 +68,7 @@ resource "aws_instance" "CSRv" {
 resource "aws_eip_association" "eip_assoc" {
   count = var.create ? 1 : 0
   instance_id   = aws_instance.CSRv.id
-  allocation_id = data.aws_eip.csrv.id
+  allocation_id = data.aws_eip.csrv[count.index].id
 }
 */
 

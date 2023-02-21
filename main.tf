@@ -13,5 +13,6 @@ module  "aws_instance" "CSRv" {
   Root-volume-size = 8
   Root-volume-encrypted = true
   Private-ip = null
+  
 }
 
